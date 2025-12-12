@@ -97,6 +97,20 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // Konuşma aktifken hareket etme (yazı yazmak için)
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
+        {
+            // Sadece yerçekimi uygula
+            if (controller != null)
+            {
+                if (controller.isGrounded && velocity.y < 0)
+                    velocity.y = -2f;
+                velocity.y += gravity * Time.deltaTime;
+                controller.Move(velocity * Time.deltaTime);
+            }
+            return; // WASD yazı yazmak için kullanılacak
+        }
+        
         HandleMovement();
         HandleInteraction();
     }

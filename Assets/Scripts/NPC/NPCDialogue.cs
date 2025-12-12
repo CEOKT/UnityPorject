@@ -33,6 +33,16 @@ public class NPCDialogue : MonoBehaviour
         conversationContext = BuildConversationContext();
         Debug.Log($"Conversation started with {npcData.npcName}");
         Debug.Log($"Opinion: {npcData.GetOpinionStatus()} ({npcData.opinionScore})");
+        
+        // UI'ı başlat
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.StartDialogue(GetComponent<NPCController>());
+        }
+        else
+        {
+            Debug.LogError("DialogueManager.Instance is NULL! Sahnede DialogueManager yok mu?");
+        }
     }
 
     /// <summary>

@@ -41,6 +41,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // DİYALOG SİSTEMİNİ KONTROL ET (Otomatik Kurtarma)
+            if (FindFirstObjectByType<DialogueManager>() == null)
+            {
+                Debug.LogWarning("⚠️ DialogueManager sahnede bulunamadı! GameManager tarafından otomatik oluşturuluyor...");
+                GameObject dialogueSystem = new GameObject("DialogueSystem_AutoCreated");
+                dialogueSystem.AddComponent<DialogueManager>();
+                // DialogueManager'ın kendi Start'ı şimdi UI'ı oluşturacak
+            }
         }
         else
         {

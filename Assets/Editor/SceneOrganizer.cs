@@ -710,9 +710,9 @@ public class SceneOrganizer : EditorWindow
         outline.effectDistance = new Vector2(2, -2);
 
         RectTransform bubbleRT = bubble.GetComponent<RectTransform>();
-        // Ekranın ortasında, hafif yukarıda
-        bubbleRT.anchorMin = new Vector2(0.3f, 0.45f); 
-        bubbleRT.anchorMax = new Vector2(0.7f, 0.85f);
+        // BÜYÜK BALON - Ekranın üst yarısını kaplar
+        bubbleRT.anchorMin = new Vector2(0.05f, 0.4f); 
+        bubbleRT.anchorMax = new Vector2(0.95f, 0.95f);
         bubbleRT.offsetMin = Vector2.zero; bubbleRT.offsetMax = Vector2.zero;
 
         // BALON KUYRUĞU (Görsel efekt)
@@ -729,41 +729,42 @@ public class SceneOrganizer : EditorWindow
         tailOutline.effectColor = Color.black;
         tailOutline.effectDistance = new Vector2(1, -1);
 
-        // NPC İSMİ (Balonun içinde, üstte)
+        // NPC İSMİ (Balonun içinde, üstte) - BÜYÜK FONT
         GameObject nameObj = new GameObject("Name");
         nameObj.transform.SetParent(bubble.transform, false);
         TextMeshProUGUI nameTxt = nameObj.AddComponent<TextMeshProUGUI>();
-        nameTxt.fontSize = 32;
+        nameTxt.fontSize = 48; // BÜYÜK
         nameTxt.fontStyle = FontStyles.Bold;
         nameTxt.color = new Color(0.8f, 0.4f, 0.1f); // Turuncu/Kahve tonu
         nameTxt.alignment = TextAlignmentOptions.Center;
         RectTransform nameRect = nameObj.GetComponent<RectTransform>();
-        nameRect.anchorMin = new Vector2(0.05f, 0.85f);
-        nameRect.anchorMax = new Vector2(0.95f, 0.95f);
+        nameRect.anchorMin = new Vector2(0.02f, 0.88f);
+        nameRect.anchorMax = new Vector2(0.98f, 0.98f);
         dm.npcNameText = nameTxt;
 
-        // MESAJ METNİ (Balonun ortasında)
+        // MESAJ METNİ (Balonun ortasında) - BÜYÜK ve OKUNABİLİR
         GameObject msgObj = new GameObject("Message");
         msgObj.transform.SetParent(bubble.transform, false);
         TextMeshProUGUI msgTxt = msgObj.AddComponent<TextMeshProUGUI>();
-        msgTxt.fontSize = 24;
+        msgTxt.fontSize = 36; // BÜYÜK FONT
         msgTxt.color = Color.black; // SİYAH YAZI
         msgTxt.textWrappingMode = TextWrappingModes.Normal;
         msgTxt.overflowMode = TextOverflowModes.Overflow;
         msgTxt.alignment = TextAlignmentOptions.TopLeft;
+        msgTxt.lineSpacing = 10; // Satır aralığı
         RectTransform msgRect = msgObj.GetComponent<RectTransform>();
-        msgRect.anchorMin = new Vector2(0.05f, 0.1f);
-        msgRect.anchorMax = new Vector2(0.95f, 0.8f);
+        msgRect.anchorMin = new Vector2(0.03f, 0.05f);
+        msgRect.anchorMax = new Vector2(0.97f, 0.85f);
         dm.dialogueText = msgTxt;
 
-        // 3. OYUNCU GİRİŞ ALANI (Aşağıda ayrı bir bar olarak)
+        // 3. OYUNCU GİRİŞ ALANI (Aşağıda BÜYÜK bar)
         GameObject inputBar = new GameObject("InputBar");
         inputBar.transform.SetParent(mainPanel.transform, false);
         Image inputBarImg = inputBar.AddComponent<Image>();
-        inputBarImg.color = new Color(0.2f, 0.2f, 0.2f, 0.9f); // Koyu gri bar
+        inputBarImg.color = new Color(0.15f, 0.15f, 0.2f, 0.95f); // Koyu mavi-gri bar
         RectTransform inputBarRT = inputBar.GetComponent<RectTransform>();
-        inputBarRT.anchorMin = new Vector2(0.2f, 0.05f);
-        inputBarRT.anchorMax = new Vector2(0.8f, 0.15f);
+        inputBarRT.anchorMin = new Vector2(0.05f, 0.02f);
+        inputBarRT.anchorMax = new Vector2(0.95f, 0.18f);
         
         // INPUT FIELD
         GameObject inputObj = new GameObject("InputField");
@@ -784,22 +785,22 @@ public class SceneOrganizer : EditorWindow
         textAreaRect.anchorMin = Vector2.zero; textAreaRect.anchorMax = Vector2.one;
         textAreaRect.offsetMin = new Vector2(10, 5); textAreaRect.offsetMax = new Vector2(-10, -5);
 
-        // Placeholder
+        // Placeholder - BÜYÜK FONT
         GameObject placeholder = new GameObject("Placeholder");
         placeholder.transform.SetParent(textArea.transform, false);
         TextMeshProUGUI placeholderText = placeholder.AddComponent<TextMeshProUGUI>();
-        placeholderText.text = "Cevabını buraya yaz...";
-        placeholderText.fontSize = 20;
-        placeholderText.color = new Color(0.7f, 0.7f, 0.7f);
+        placeholderText.text = "Sorunuzu buraya yazın...";
+        placeholderText.fontSize = 28; // BÜYÜK
+        placeholderText.color = new Color(0.6f, 0.6f, 0.7f);
         placeholderText.fontStyle = FontStyles.Italic;
         RectTransform placeholderRect = placeholder.GetComponent<RectTransform>();
         placeholderRect.anchorMin = Vector2.zero; placeholderRect.anchorMax = Vector2.one;
         
-        // Input Text
+        // Input Text - BÜYÜK FONT
         GameObject text = new GameObject("Text");
         text.transform.SetParent(textArea.transform, false);
         TextMeshProUGUI inputText = text.AddComponent<TextMeshProUGUI>();
-        inputText.fontSize = 20;
+        inputText.fontSize = 28; // BÜYÜK
         inputText.color = Color.white;
         RectTransform textRect = text.GetComponent<RectTransform>();
         textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one;
@@ -825,7 +826,7 @@ public class SceneOrganizer : EditorWindow
         sendTxtObj.transform.SetParent(sendBtnObj.transform, false);
         TextMeshProUGUI sendTxt = sendTxtObj.AddComponent<TextMeshProUGUI>();
         sendTxt.text = "GÖNDER";
-        sendTxt.fontSize = 18;
+        sendTxt.fontSize = 24; // BÜYÜK
         sendTxt.fontStyle = FontStyles.Bold;
         sendTxt.color = Color.white;
         sendTxt.alignment = TextAlignmentOptions.Center;
